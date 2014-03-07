@@ -17,12 +17,12 @@ mkdir $transcode
 #ffmpeg -i "$1" -s 640x352 -aspect 640:352 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 1 -vpre medium_firstpass -an "$transcode/$1"-640x352.mp4 && ffmpeg -y -i "$1" -s 640x352 -aspect 640:352 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 2 -vpre medium -acodec libmp3lame -ac 2 -ar 44100 -ab 64k "$transcode/$1"-640x352.mp4
 #ffmpeg -i "$1" -s 864x480 -aspect 864:480 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 1 -vpre medium_firstpass -an "$transcode/$1"-864x480.mp4 && ffmpeg -y -i "$1" -s 864x480 -aspect 864:480 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 2 -vpre medium -acodec libmp3lame -ac 2 -ar 44100 -ab 96k "$transcode/$1"-864x480.mp4
 #ffmpeg -i "$1" -s 1280x720 -aspect 1280:720 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 1 -vpre medium_firstpass -an "$transcode/$1"-1280x720.mp4 && ffmpeg -y -i "$1" -s 1280x720 -aspect 1280:720 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 2 -vpre medium -acodec libmp3lame -ac 2 -ar 44100 -ab 128k "$transcode/$1"-1280x720.mp4
-ffmpeg -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 1 -vpre medium_firstpass -an "$transcode/$1"-1920x1080.mp4 && ffmpeg -y -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 2 -vpre medium -acodec libmp3lame -ac 2 -ar 44100 -ab 256k "$transcode/$1"-1920x1080.mp4
+ffmpeg -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 1 -vpre slow -an "$transcode/$1"-1920x1080.mp4 && ffmpeg -y -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 2 -vpre medium -acodec libmp3lame -ac 2 -ar 44100 -ab 256k "$transcode/$1"-1920x1080.mp4
 
 
 ## WebM
-#ffmpeg -i "/home/user/input_video.mpg" -codec:v libvpx -quality good -cpu-used 0 -b:v 600k -qmin 10 -qmax 42 -maxrate 500k -bufsize 1000k -threads 2 -vf scale=-1:480 -an -pass 1 -f webm /dev/null
-#ffmpeg -i "/home/user/input_video.mpg" -codec:v libvpx -quality good -cpu-used 0 -b:v 600k -qmin 10 -qmax 42 -maxrate 500k -bufsize 1000k -threads 2 -vf scale=-1:480 -codec:a libvorbis -b:a 128k -pass 2 -f webm output.webm
+ffmpeg -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -codec:v libvpx -quality good -cpu-used 0 -b:v 600k -qmin 10 -qmax 42 -maxrate 500k -bufsize 1000k -threads 2 -vf scale=-1:1080 -an -pass 1 -f webm /dev/null
+ffmpeg -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -codec:v libvpx -quality good -cpu-used 0 -b:v 600k -qmin 10 -qmax 42 -maxrate 500k -bufsize 1000k -threads 2 -vf scale=-1:1080 -codec:a libvorbis -b:a 128k -pass 2 -f webm output.webm
 
 
 ## OGG
@@ -38,7 +38,7 @@ ffmpeg -y -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -b 360k -bt 416k 
 #ffmpeg -i "$1" -s 640x352 -aspect 640:352 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 1 -vpre medium_firstpass -an "$transcode/$1"-640x352.flv && ffmpeg -y -i "$1" -s 640x352 -aspect 640:352 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 2 -vpre medium -acodec libmp3lame -ac 2 -ar 44100 -ab 64k "$transcode/$1"-640x352.flv
 #ffmpeg -i "$1" -s 864x480 -aspect 864:480 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 1 -vpre medium_firstpass -an "$transcode/$1"-864x480.flv && ffmpeg -y -i "$1" -s 864x480 -aspect 864:480 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 2 -vpre medium -acodec libmp3lame -ac 2 -ar 44100 -ab 96k "$transcode/$1"-864x480.flv
 #ffmpeg -i "$1" -s 1280x720 -aspect 1280:720 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 1 -vpre medium_firstpass -an "$transcode/$1"-1280x720.flv && ffmpeg -y -i "$1" -s 1280x720 -aspect 1280:720 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 2 -vpre medium -acodec libmp3lame -ac 2 -ar 44100 -ab 128k "$transcode/$1"-1280x720.flv
-ffmpeg -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 1 -vpre medium_firstpass -an "$transcode/$1"-1920x1080.flv && ffmpeg -y -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 2 -vpre medium -acodec libmp3lame -ac 2 -ar 44100 -ab 256k "$transcode/$1"-1920x1080.flv
+#ffmpeg -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 1 -vpre medium_firstpass -an "$transcode/$1"-1920x1080.flv && ffmpeg -y -i "$1" -s 1920x1080 -aspect 1920:1080 -r 30000/1001 -b 360k -bt 416k -vcodec libx264 -threads $threads -pass 2 -vpre medium -acodec libmp3lame -ac 2 -ar 44100 -ab 256k "$transcode/$1"-1920x1080.flv
 
 ## MP3
 
